@@ -1,0 +1,14 @@
+# Поиск 5ти пользователей, сгенерировавших наибольшее количество запросов
+Решение 1
+User: a6c732a9cd426b7620cd93e7aa37aef6;   Requests: 54522
+User: 7834ea899abe21b5fd047e125cdffc56;   Requests: 50149
+User: 64c5eae485561a1d7064477e792a6358;   Requests: 46463
+User: aedf2485753a52ca1149bde2343e8d7a;   Requests: 40371
+User: e948e29d93d507d2bfd6dc2dee45bf2b;   Requests: 37718
+# Поиск 5ти пользователей, отправивших наибольшее количество данных
+Решение 2
+User: d3263fcb1a81c914d04630c6740cd720;   Traffic: 948812255
+User: 426cbf7089b22bfc471d3d4446049440;   Traffic: 447466106
+User: d7988e912bef788f3ba65a206db8f096;   Traffic: 200189029
+User: 46a8b3373b4b88c4ab540dcb4cca08a4;   Traffic: 161407863
+User: ef96a577df1a391a738b209571551f75;   Traffic: 130318688
