@@ -1,9 +1,12 @@
-# Yandex_test
 import csv
-from math import isclose
-from datetime import datetime
+import sys
 
-def query_stats(file_name):
+file = open('result.txt','w', encoding = 'utf-8')
+
+def task_1(file_name):
+	
+	print('# Starting Task 1')
+	
 	with open(file_name) as inf:
 		csv_iter =  csv.reader(inf)
 		next(csv_iter)
@@ -16,9 +19,19 @@ def query_stats(file_name):
 				user_dict[username] += 1
 			else:
 				user_dict[username] = 1
-	return user_dict
+	sorted_query_stats = sorted(user_dict, key = lambda k: user_dict[k], reverse = True)
 	
-def data_stats(file_name):
+	print('# Saving results to results.txt')
+	
+	file.write('# Поиск 5ти пользователей, сгенерировавших наибольшее количество запросов\nРешение 1\n')
+	for i in range(5):
+		file.write('User: {};   Requests: {}\n'.format(sorted_query_stats[i], user_dict[sorted_query_stats[i]]))
+	print('# Task 1 - Done')
+	
+def task_2(file_name):
+
+	print('# Starting Task 2')
+	
 	with open(file_name) as inf:
 		csv_iter =  csv.reader(inf)
 		next(csv_iter)
@@ -32,31 +45,22 @@ def data_stats(file_name):
 				user_dict[username] += bytes
 			else:
 				user_dict[username] = bytes
-	return user_dict
-
-def user_time(file_name):
-	with open(file_name) as inf:
-		csv_iter =  csv.reader(inf)
-		next(csv_iter)
-		user_dict = {}
-		for user_line in csv_iter:
-			username = user_line[1]
-			time = datetime.strptime(user_line[0],'%Y-%m-%dT%H:%M:%S.%f%z')
-			if not username:
-				continue
-			if username in user_dict:
-				user_dict[username] += [str(time)]
-			else:
-				user_dict[username] = [str(time)]
-	return user_dict
+	sorted_data_stats = sorted(user_dict, key = lambda k: user_dict[k], reverse = True)
 	
-query_stats = query_stats('shkib.csv')
-data_stats = data_stats('shkib.csv')
-
-sorted_query_stats = sorted(query_stats, key = lambda k: query_stats[k], reverse = True)
-sorted_data_stats = sorted(data_stats, key = lambda k: data_stats[k], reverse = True)
-
-top_query_stats = [sorted_query_stats[i] for i in range(0,5)]
-top_data_stats = [sorted_data_stats[i] for i in range(0,5)]
-
-user_time = user_time('shkib.csv')
+	print('# Saving results to results.txt')
+	
+	file.write('# Поиск 5ти пользователей, отправивших наибольшее количество данных\nРешение 2\n')
+	for i in range(5):
+		file.write('User: {};   Traffic: {}\n'.format(sorted_data_stats[i], user_dict[sorted_data_stats[i]]))
+	print('# Task 2 - Done')
+	
+if __name__ == "__main__":
+	try:
+		if len (sys.argv) > 1:
+			file_name = sys.argv[1]
+			task_1(file_name)
+			task_2(file_name)
+		else:
+			print('# Please run the program in the format: task_5.py file_name.csv')
+	except FileNotFoundError:
+		print('# The file {} does not exist. \n# Please run the program in the format: task_5.py file_name.csv'.format(file_name))
